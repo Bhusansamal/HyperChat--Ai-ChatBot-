@@ -1,0 +1,124 @@
+/* Default Sidebar */
+.sidebar {
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f0f4f9;
+    padding: 25px 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Default width */
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%); /* Sidebar hidden by default */
+    z-index: 1000; /* Above Main.jsx */
+}
+
+/* Show sidebar when expanded */
+.sidebar.expanded {
+    transform: translateX(0);
+}
+
+/* Sidebar menu icon (always visible) */
+.menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    width: 30px;
+    z-index: 1100; /* Keep menu icon above everything */
+}
+
+.sidebar .top{
+    margin-top: 20px;
+}
+
+/* Sidebar images */
+.sidebar img {
+    width: 20px;
+}
+
+/* New Chat Button */
+.sidebar .new-chat {
+    display: inline-flex;
+    margin-top: 50px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: #e6eaf1;
+    border-radius: 50px;
+    font-size: 14px;
+    color: grey;
+    cursor: pointer;
+}
+
+/* Recent Chats */
+.sidebar .recent {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 1.5s;
+}
+
+.sidebar .recent-title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* Individual Recent Entry */
+.sidebar .recent-entry {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+    padding-right: 40px;
+    border-radius: 50px;
+    color: #282828;
+    cursor: pointer;
+}
+
+.sidebar .recent-entry:hover {
+    background-color: #e2e6eb;
+}
+
+/* Bottom Section */
+.sidebar .bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .bottom-item {
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+/* Responsive Sidebar for Mobile */
+@media (max-width: 600px) {
+    .sidebar {
+        width: 80vw; /* Sidebar covers 80% of the screen */
+    }
+
+    /* Hide all sidebar content when collapsed */
+    .sidebar:not(.expanded) .new-chat,
+    .sidebar:not(.expanded) .recent,
+    .sidebar:not(.expanded) .bottom {
+        display: none;
+    }
+
+    /* Overlay to darken Main.jsx when sidebar is open */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay effect */
+        z-index: 999; /* Below the sidebar but above Main.jsx */
+        display: none;
+    }
+
+    /* Show overlay when sidebar is expanded */
+    .sidebar.expanded + .overlay {
+        display: block;
+    }
+}
